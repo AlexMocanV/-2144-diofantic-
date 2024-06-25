@@ -1,0 +1,33 @@
+int cautarebin(int x,int s[],int n)
+{
+    int l=1,r=n;
+    while(l<=r)
+    {
+        int m=(l+r)/2;
+        if(s[m]*s[m]==x)
+        {
+            return true;
+        }
+        if(s[m]*s[m]<x)
+        {
+            l=m+1;
+        }
+        else r=m-1;
+    }
+    return false;
+}
+int diofantic(int n,int s[],int a,int b,int c)
+{
+    int perechi=0;
+    for(int i=1;i<=n&&c-(s[i]*s[i]*a)>=0;i++)
+    {
+        int scop=c-(s[i]*s[i]*a);
+        if(scop%b==0)
+        {
+            scop/=b;
+            if(cautarebin(scop,s,n))
+                ++perechi;
+        }    
+    }
+    return perechi;
+}
